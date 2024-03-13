@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link href="{{ url_for('static', filename='dist/kioskboard-2.3.0.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='dist/homeuistyle.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='dist/feedbackstyle.css') }}" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/86aee6cc9c.js" crossorigin="anonymous"></script>
+  <title>SebastyUI</title>
+  <style>
+    :root{
+    --red: #8a0000;
+    --lred: #8a0000b0;
+    --black: #000000;
+    --brown: #ded7c4;
+    --white: #ffffff;
+    --cream: #ede9df;
+    --bgcolor: #00000066;
+    --yellow: #ffbd13;
+    }
+    .chat-container {
+            width: 700px;
+            margin-left: 140px;
+            padding: 20px;
+            border: 5px solid var(--lred);
+            border-radius: 8px;
+            height: 400px; /* Set a fixed height for the container */
+            overflow-y:auto; /* Enable vertical scrolling */
+
+    }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f1f0f0;
+        }
+        .user-message {
+            background-color: #8a0000b0;
+            align-self: flex-end;
+            color: white;
+        }
+        .chat-form {
+            position: absolute;
+            top: 80%;
+            border-radius: 40px;
+            padding: 11.25px;
+            margin: 40px;
+            margin-left: 75px;
+            display: flex;
+            align-items: center;
+            background: #bdb7a7;
+            width: 650px;
+            box-shadow: var(--shadow);
+        }
+        .chat-form input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-left: auto;
+            outline: none;
+            border: none;
+            background: transparent;
+        }
+        .chat-form input[type="submit"] {
+            width: 18%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #8a0000;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: auto;
+        }
+        .chat-form input[type="submit"]:hover {
+            background-color: #8a0000b0;
+        }
+         
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+        <img class="logo" src="{{ url_for('static', filename='pictures/LOGO.png') }}" alt="Logo">
+        <a href="#home"><i class="fa-solid fa-comments"></i></i>Info Hub</a>
+            <a href="#about"><i class="fa-solid fa-circle-info"></i>About</a>
+            <a href="#FAQ"><i class="fa-solid fa-circle-question"></i>FAQs</a>
+            <a href="#feedback"><i class="fa-regular fa-star-half-stroke"></i>Feedback</a>
+            <a class="back" onclick="location.href='/SEBASTYINDEX'"><i class="fa-solid fa-house"></i>BACK</a>
+    </div>
+</header>
+
+<section class="section InfoHub" id="home">
+    <h2>Information Hub</h2>
+    <div class="chat-container">
+        <div class="texts">
+          <p id="listening-status"></p>
+        </div>
+      </div>
+</section>
+
+<section class="section About" id="about">
+    <h2>About Sebasty</h2>
+        <div class="AboutP">
+            <p>Sebasty originates from the Sebastian Identity, where 'Sebastian' represents core values of truth and community. Sebasty serves as a user-friendly robot designed for customer service and marketing initiatives.</p>
+            <p>The name of Sebasty came from the combination of the word Sebastinian and Identity because of the name of our instuition San Sebastian college and we also used sebasty so that we will able to promote our school. It is an Al supported robot capable of providing information, collecting feedback, and promoting the school.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p></div>
+</section>
+
+<section class="section FAQ" id="FAQ">
+    <div class="tops">
+        <h2>FAQs Section</h2>
+    </div>
+    <div class="FAQps">   
+        <div class="img-box">
+            <img src="{{ url_for('static', filename='pictures/faqs.png') }}" alt="FAQS">
+        </div>
+        <div class="qtext">
+            <div class="title">Questions</div>
+        <ul class="faqs-text">
+            <li>
+                <div class="questions-list">
+                    <span class="questions">What is the admission process?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <p>The admission process starts with filling out an application form and providing necessary documents like transcripts and PSA. Then, the institution reviews the application, conducts interviews, and finally notifies the applicant of their admission status.</p>
+                <span class="line"></span>
+            </li>
+            <li>
+                <div class="questions-list">
+                    <span class="questions">How can parents stay involved and communicate with the school?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <p>Parents can stay involved and communicate with the school by attending meetings, volunteering, and checking school updates regularly.</p>
+                <span class="line"></span>
+            </li>            <li>
+                <div class="questions-list">
+                    <span class="questions">What extracurricular activities and clubs does the school offer?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <p>The school offers a variety of extracurricular activities and clubs or organizations depending on your course.</p>
+                <span class="line"></span>
+            </li>            <li>
+                <div class="questions-list">
+                    <span class="questions">What academic support services and resources are available for students?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <p>The school provides academic support services and resources such as access to academic advisors or counselors, online databases, libraries, and study materials.</p>
+                <span class="line"></span>
+            </li>            <li>
+                <div class="questions-list">
+                    <span class="questions">What are the school's policies regarding attendance, behavior, and dress code?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <p>The school's policies regarding attendance typically require students to attend classes regularly, with consequences for excessive absences. Regarding behavior, the school generally expects students to adhere to a code of conduct promoting respect, safety, and responsibility, with disciplinary measures for violations. As for the dress code, it typically outlines acceptable attire, such as prohibiting revealing clothing or clothing with offensive imagery, with enforcement measures in place.</p>
+                <span class="line"></span>
+            </li>
+            </ul>
+        </div>
+        </div>
+</section>
+
+<form action="/survey" id="survey_form" class="form1" method="post">
+    <section class="feedback wrapper" id="feedback">
+        <fieldset>
+            <legend>Feedback Form</legend>
+            <div class="NameandDep">
+                <div class="name">
+                    <p>Name:</p>
+                    <input type="text" 
+                           placeholder="Optional..." 
+                           name="name"
+                           placeholder="Your opinion..."
+                           class="js-kioskboard-input" 
+                           data-kioskboard-type="keyboard" 
+                           data-kioskboard-placement="bottom" 
+                           data-kioskboard-specialcharacters="false">
+                </div>
+    
+                <div class="department">
+                    <p>Your Department:</p>
+                    <select name="There_Department" id="There_Department">
+                        <option value="Not Specified">Select Here...</option>
+                        <option value="Nursing">Institute of Nursing</option>
+                        <option value="Engineering">Engineering Department</option>
+                        <option value="IT">IT Department</option>
+                        <option value="Criminology">Criminology Department</option>
+                        <option value="Business">Business and Accountancy Department</option>
+                        <option value="Psychology">Psychology Department</option>
+                        <option value="SeniorHigh">Senior High School Department</option>
+                        <option value="Communication">Communication Department</option>
+                        <option value="Teaching">Teaching Personnel</option>
+                        <option value="NonTeaching">Non-Teaching Personnel</option>
+                        <option value="Administrators">Lay administrators</option>
+                        <option value="Staff">Staff</option>
+                        <option value="Tourism">Tourism Management</option>
+                        <option value="Hospitality">Hospitality Management</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="containertargetdepartment">
+                    <div class="targetdep">
+                        <p>Your Target Facility:</p>
+                        <select name="There_TDepartment" id="There_TDepartment">
+                            <option value="Not Specified">Select Here...</option>
+                            <option value="Chemistry">Laboratory – Chemistry</option>
+                            <option value="Complab">Laboratory – Complab Remote</option>
+                            <option value="Computer">Laboratory – Computer Center</option>
+                            <option value="Speech">Laboratory – Speech</option>
+                            <option value="CompEng">Laboratory – Computer Engineering</option>
+                            <option value="ElecEng">Laboratory – Electronics Engineering</option>
+                            <option value="HRM">Laboratory – Hotel and Restaurant Management</option>
+                            <option value="ITM">Laboratory – ITM / Baitech</option>
+                            <option value="MassComm">Laboratory – Mass Communication</option>
+                            <option value="MechEng">Laboratory – Mechanical Engineering</option>
+                            <option value="Nursing">Laboratory – Nursing Skills</option>
+                            <option value="Physics">Laboratory – Physics</option>
+                            <option value="Psychology">Laboratory – Psychology</option>  
+                            <option value="VPAdmin">Office of the VP for Administration/CHRMD</option>
+                            <option value="CICT">Center for Information and Communications Technology</option>
+                            <option value="LMS">Learning Management System Office</option>
+                            <option value="SchoolPresident">Office of the School President</option>
+                            <option value="ExecSec">Executive Secretary</option>
+                            <option value="CIQEM">Center for Institutional Effectiveness and Quality Management</option>
+                            <option value="CorpComm">Center for Corporate Communications</option>
+                            <option value="Alumni">Office for Alumni Relations/Internship Coordinator</option>
+                            <option value="VPFinance">Office of the VP for Finance</option>
+                            <option value="Accounting">Accounting Office</option>
+                            <option value="Facilities">Office for Facilities and Management and General Administrative Services</option>
+                            <option value="Auditor">Auditor's Office</option>
+                            <option value="Bookstore">Bookstore</option>
+                            <option value="VPIdentity">Office of the VP for Identity, Formation and Mission/RE-COP</option>
+                            <option value="CampusMinistry">Office for Campus Ministry</option>
+                            <option value="StudentAffairs">Office for Student Affairs and Services</option>
+                            <option value="StudentCenter">Student Development and Placement Center</option>
+                            <option value="MedicalClinic">Medical Clinic</option>
+                            <option value="DentalClinic">Dental Clinic</option>
+                            <option value="VPAcademics">Office of the VP for Academics and Research</option>
+                            <option value="Registrar">School Registrar</option>
+                            <option value="Research">Center for Research and Creative Works</option>
+                            <option value="LearningCenter">St. Thomas of Villanova Learning Resource Center (Library)</option>
+                            <option value="CollegeDean">Office of the College Dean</option>
+                            <option value="SHSPrincipal">Office of the Senior High School Principal</option>
+                            <option value="Admission">Office for Admission and Scholarship</option>
+
+        
+                        </select>
+                    </div>
+                    <div class="ratecontainer">
+                        <p>How would you rate them?</p>
+                        <div class="rating2" >
+                            <input value="5" name="department_rating" id="star5" type="radio" required>
+                            <label for="star5"></label>
+                            <input value="4" name="department_rating" id="star4" type="radio" required>
+                            <label for="star4"></label>
+                            <input value="3" name="department_rating" id="star3" type="radio" required>
+                            <label for="star3"></label>
+                            <input value="2" name="department_rating" id="star2" type="radio" required>
+                            <label for="star2"></label>
+                            <input value="1" name="department_rating" id="star1" type="radio" required>
+                            <label for="star1"></label>
+                        </div> 
+                    </div>
+            </div>
+            
+            <textarea id="textarea" 
+                      class="textarea js-kioskboard-input" 
+                      name="suggestion" 
+                      cols="30" 
+                      rows="5" 
+                      placeholder="Your opinion..."
+                      data-kioskboard-type="keyboard" 
+                      data-kioskboard-placement="top" 
+                      data-kioskboard-specialcharacters="false" ></textarea>
+            <div class="btn-group2">
+                <button type="button" class="btn submit2" onclick="showNextSection()">Next</button>
+                <button type="button" class="btn cancel2" onclick="location.href='/SEBASTYINDEX'">Cancel</button>
+            </div>
+        </fieldset>
+    </section>
+    
+    <div class="schoolrate">
+        <section class="section SebR" id="SSrating" style="display: none;">
+            <div class="sebBox">
+                <div class="seb content">
+                    <h1>How do you rate San Sebastian?</h1>
+                    <div class="rating1" >
+                        <input value="5" name="schoolrating" id="star5_school" type="radio" required>
+                        <label for="star5_school"></label>
+                        <input value="4" name="schoolrating" id="star4_school" type="radio" required>
+                        <label for="star4_school"></label>
+                        <input value="3" name="schoolrating" id="star3_school" type="radio" required>
+                        <label for="star3_school"></label>
+                        <input value="2" name="schoolrating" id="star2_school" type="radio" required>
+                        <label for="star2_school"></label>
+                        <input value="1" name="schoolrating" id="star1_school" type="radio" required>
+                        <label for="star1_school"></label>
+                    </div>
+                    <div class="btn-group1">
+                        <button type="submit" class="btn submit1">Submit</button>
+                        <button type="button" class="btn cancel1" onclick="showPreviousSection()">Back</button>
+                    </div>
+                </div>
+            </div>
+        </section> 
+    </div>    
+  </form>  
+
+  <!-- FAQS -->
+  <script>
+    let li = document.querySelectorAll(".faqs-text li");
+    for (var i = 0; i < li.length; i++){
+        li[i].addEventListener("click", (e)=>{
+            let clickedLi;            
+            if(e.target.classList.contains("questions-list")){
+                clickedLi = e.target.parentElement; 
+            }else {
+                clickedLi = e.target.parentElement.parentElement;
+            }
+            clickedLi.classList.toggle("showAnswer");
+        })
+    }
+  </script>
+
+  <script>
+    function showNextSection() {
+        document.getElementById("feedback").style.display = "none";
+        document.getElementById("SSrating").style.display = "flex ";
+    }
+  
+    function showPreviousSection() {
+        document.getElementById("feedback").style.display = "flex";
+        document.getElementById("SSrating").style.display = "none";
+    }
+  
+    function cancelForm() {
+        document.getElementById("feedbackForm").reset();
+        document.getElementById("feedback").style.display = "flex";
+        document.getElementById("SSrating").style.display = "none";
+    }
+  </script>
+
+<script src="{{ url_for('static', filename='dist/kioskboard-2.3.0.min.js') }}"></script>
+
+<script>
+    const texts = document.querySelector(".texts");
+const listeningStatus = document.getElementById("listening-status");
+
+window.SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const recognition = new SpeechRecognition();
+recognition.interimResults = true;
+
+let p = document.createElement("p");
+
+recognition.addEventListener("result", (e) => {
+  texts.appendChild(p);
+  const text = Array.from(e.results)
+    .map((result) => result[0])
+    .map((result) => result.transcript)
+    .join("");
+
+  p.innerText = text;
+
+  if (e.results[0].isFinal) {
+    if (text.includes("how are you") || text.includes("kamusta ka")) {
+      displayAndSpeak("I am fine");
+    } else if (
+      text.includes("what's your name") ||
+      text.includes("what is your name")
+    ) {
+      displayAndSpeak("My name is Sebasty");
+    } else if (text.includes("open baste facebook page")|| text.includes("open sscr facebook page")) {
+      displayAndSpeak("Opening facebook page");
+      window.open("https://web.facebook.com/sscrdecaviteofficial");
+    } else if (
+      text.includes("why are we here") ||
+      text.includes("can you explain why are we here")
+    ) {
+      displayAndSpeak(
+        "We are here to promote our School, San Sebastian College Recoletos de Cavite."
+      );
+    } else if (
+      text.includes("what are the available courses in san sebastian") ||
+      text.includes("what are the courses in san sebastian")
+    ) {
+      displayAndSpeak(
+        "The available courses at San Sebastian College - Recoletos de Cavite are: BS Hospitality Management, BS Tourism Management, BSBA Financial Management, BSBA Marketing Management, BS Information Technology, BS Computer Engineering, BS Electronics Engineering, BS Industrial Engineering, BS Psychology, BS Accountancy, BS Communication, BS Nursing, BS Criminology"
+      );
+    } else if (
+      text.includes("can you greet our dear students") ||
+      text.includes("greet the students")
+    ) {
+      displayAndSpeak(
+        "Hi everyone! I am Sebasty, your friend that is always ready to serve you!"
+      );
+    } else if (text.includes("what is the school's vision")) {
+      displayAndSpeak(
+        "We envision San Sebastian College – Recoletos de Cavite as a trusted Catholic community of quality learning in the service of God in His creation and humanity."
+      );
+    } else if (text.includes("what is the school's mission")) {
+      displayAndSpeak(
+        "We, the SSC-R de Cavite family, dedicate ourselves to the formation of community members into Christ-centered, professional, and socially responsible leaders of the society."
+      );
+    } else if (text.includes("hi")) {
+      displayAndSpeak(
+        "Hi! how may I help you?"
+      );
+    } else if (text.includes("thank you")||text.includes("thanks")) {
+      displayAndSpeak(
+        "You're always welcome!"
+      );
+    } else if (text.includes("bye")||text.includes("good bye")) {
+      displayAndSpeak(
+        "Bye! have a nice day!"
+      );
+    } else if (text.includes("hi")) {
+      displayAndSpeak(
+        "Hi! how may I help you?"
+      );
+    }else if (
+      text.includes("where can I give my feedback about the school") ||
+      text.includes("I want to give feedback") ||
+      text.includes("I have a comment") ||
+      text.includes("feedback")
+  ) {
+      displayAndSpeak("You can give it to me! Kindly click on the \"Feedback\" section at the left side of the screen, fill out the form, and submit it. I will process it so that it reaches the administration. Alternatively, you can go to the department you have concerns with and inform the officer in charge about the concerns you have.");
+  } else if (
+      text.includes("where can I get details about the events of the school") ||
+      text.includes("events") ||
+      text.includes("details of the event") ||
+      text.includes("announcement")
+  ) {
+      displayAndSpeak("You can see event details or announcements on the official social media accounts of San Sebastian College - Recollectos de Cavite. Just search San Sebastian College - Recollectos de Cavite on Facebook to look at their main page and see if there are any posted details. You can also search for the following sites depending on your concern:\n\nIDENTITY, FORMATION AND MISSION DIVISION:\n- Baste Cavite - Student affairs\n- Baste Cavite - Campus Ministry Office\n- Baste Cavite - Student Development and Placement Center\n- Baste Cavite - Health Services\n\nACADEMIC AND RESEARCH:\n- Baste Cavite - Registrar\n- Baste Cavite - Admission and Scholarships\n- Baste Cavite - Cañacao Campus\n- Baste Cavite - Senior High School\n- Baste Cavite - Office of the College Dean\n- Baste Cavite - Graduate School\n- Baste Cavite - Libraries\n- Baste Cavite - CRCW\n- Baste Cavite - LMS\n\nFINANCE DIVISION:\n- Baste Cavite - Finance\n- Baste Cavite - Bookstore");
+  } else if (
+    text.includes("who is the head of the school") ||
+    text.includes("who leads the school") ||
+    text.includes("who is the top official of the school")
+) {
+    displayAndSpeak("REV. FR. RAFAEL B. PECSON, OAR");
+} else if (
+    text.includes("who is the college dean") ||
+    text.includes("who is in charge of the college") ||
+    text.includes("who oversees the college")
+) {
+    displayAndSpeak("JENNIFER B. ESCOBAR, MAT");
+} else if (
+    text.includes("where is San Sebastian College - Recoletos de Cavite located") ||
+    text.includes("can you tell me the address of SSCRdC") ||
+    text.includes("what is the location of SSCRdC") ||
+    text.includes("where is the Canacao Campus") ||
+    text.includes("where is the Cañacao Campus")
+) {
+    displayAndSpeak("Main Campus: Manila-Cavite Road, Sta. Cruz, Cavite City, 4100, Philippines\nCañacao Campus: Padre Burgos St., Bo. Rosario, San Roque, Cavite City, 4100, Philippines");
+} else if (
+    text.includes("where is gymnasium") ||
+    text.includes("can you tell me the location of the gymnasium") ||
+    text.includes("how do I get to the gymnasium")
+) {
+    displayAndSpeak("You can find the gymnasium at the Cañacao Campus located on Padre Burgos St., Bo. Rosario, San Roque, Cavite City, 4100, Philippines. If you plan to take a jeepney to get there, look for the one with a 'PN' placard.");
+} 
+    p = document.createElement("p");
+  }
+});
+
+recognition.addEventListener("end", () => {
+  recognition.start();
+});
+
+recognition.addEventListener("audiostart", () => {
+  listeningStatus.innerText = "Listening...";
+  listeningStatus.classList.add("listening");
+});
+
+recognition.addEventListener("audioend", () => {
+  listeningStatus.innerText = "";
+  listeningStatus.classList.remove("listening");
+});
+
+recognition.start();
+
+function displayAndSpeak(message) {
+  const response = document.createElement("p");
+  response.classList.add("replay");
+  response.innerText = message;
+  texts.appendChild(response);
+  speakText(message);
+}
+
+function speakText(message) {
+  const speech = new SpeechSynthesisUtterance();
+  speech.text = message;
+  speech.onerror = function (event) {
+    console.error("Speech synthesis error:", event.error);
+  };
+  window.speechSynthesis.speak(speech);
+}
+</script>
+<script>
+    window.onload = function() {
+
+    var select1 = document.getElementById('There_Department');
+    sortSelect(select1);
+
+    var select2 = document.getElementById('There_TDepartment');
+    sortSelect(select2);
+    };
+
+    function sortSelect(select) {
+    var options = select.getElementsByTagName('option');
+    
+    // Remove the "Select Here..." option temporarily
+    var selectHereOption = select.querySelector('option[value="Not Specified"]');
+    var selectHereOptionSelected = selectHereOption.selected;
+    select.removeChild(selectHereOption);
+    
+    // Sort the remaining options alphabetically
+    var sortedOptions = Array.from(options).sort(function(a, b) {
+        return a.text.localeCompare(b.text);
+    });
+    
+    // Add the "Select Here..." option back at the beginning
+    var selectHereOptionClone = selectHereOption.cloneNode(true);
+    select.insertBefore(selectHereOptionClone, select.firstChild);
+    
+    // Append the sorted options after the "Select Here..." option
+    for (var i = 0; i < sortedOptions.length; i++) {
+        select.appendChild(sortedOptions[i]);
+    }
+
+    // Select "Select Here..." option if it was originally selected
+    if (selectHereOptionSelected) {
+        select.selectedIndex = 0;
+    }
+};
+</script>
+
+<script>
+
+    var enkey = [
+    {
+      "0": "Q",
+      "1": "W",
+      "2": "E",
+      "3": "R",
+      "4": "T",
+      "5": "Y",
+      "6": "U",
+      "7": "I",
+      "8": "O",
+      "9": "P"
+    },
+    {
+      "0": "A",
+      "1": "S",
+      "2": "D",
+      "3": "F",
+      "4": "G",
+      "5": "H",
+      "6": "J",
+      "7": "K",
+      "8": "L"
+    },
+    {
+      "0": "Z",
+      "1": "X",
+      "2": "C",
+      "3": "V",
+      "4": "B",
+      "5": "N",
+      "6": "M"
+    }
+    ];
+    KioskBoard.run('.js-kioskboard-input', {
+      keysArrayOfObjects: enkey,
+      language: 'en',
+      autoScroll: false,
+      Capslock: true,
+      allowRealKeyboard: true,
+      allowMobileKeyboard: true,
+      cssAnimations: true,
+      cssAnimationsDuration: 260,
+
+      theme: 'dark',  
+      keysFontSize: '20px',
+      keysFontWeight: 'bold',
+      keysIconSize: '20px',
+
+      keysEnterText: 'Enter',
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+      :root {
+        --red: #8a0000;
+        --lred: #8a0000b0;
+        --black: #000000;
+        --brown: #ded7c4;
+        --white: #ffffff;
+        --cream: #ede9df;
+        --bgcolor: #00000066;
+        --yellow: #ffbd13;
+      }
+      body {
+        margin: 0;
+        background-color: var(--brown);
+        overflow: hidden;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .hamburger-panel {
+        width: 0;
+        height: 100%;
+        background-color: var(--lred);
+        overflow-x: hidden;
+        transition: 0.5s;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      .hamburger-panel a {
+        padding: 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #ffffff;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .hamburger-icon {
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--red);
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      @media screen and (max-width: 600px) {
+        .hamburger-panel a {
+          font-size: 24px;
+        }
+      }
+
+      h1 {
+        text-align: center;
+        font-weight: bolder;
+        font-size: xx-large;
+        margin-top: 20px;
+      }
+
+      #controls h1 {
+        text-align: center;
+        font-weight: bolder;
+        font-size: xx-large;
+        padding: 40px;
+      }
+
+      p {
+        font-size: x-large;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #000000;
+        text-align: left;
+      }
+
+      th {
+        background-color: var(--cream);
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      td {
+        background-color: white;
+      }
+
+      .delete-button {
+        background-color: var(--red);
+        border: none;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+      }
+
+      .delete-button:hover {
+        background-color: #cc4637;
+      }
+
+      button {
+        background-color: #cc4637;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+        margin-top: 20px;
+        padding: 8px 20px;
+        font-size: 18px;
+      }
+
+      button:hover {
+        background-color: var(--lred);
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--red);
+        font-weight: bold;
+      }
+
+      #video-stream {
+        margin-top: 20px;
+      }
+
+      #stop {
+        background-color: #ff0000;
+        color: #fff;
+      }
+
+      section {
+        height: 100vh;
+      }
+
+      .table-container {
+        max-height: 200px; /* Adjust height as needed */
+        overflow-y: auto;
+      }
+
+      .ftable,
+      .Stable {
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .table-container {
+        max-height: 300px; /* Adjust height as needed */
+        overflow-y: scroll;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; /* Ensure table layout remains consistent */
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #000000;
+        text-align: left;
+        white-space: nowrap; /* Prevent text wrapping */
+      }
+
+      th {
+        background-color: var(--cream);
+        position: sticky;
+        top: 0;
+        z-index: 1; /* Ensure it's above other content */
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      td {
+        background-color: white;
+      }
+
+      #update {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--cream);
+        border-radius: 10px;
+      }
+
+      h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .form-container {
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      select,
+      input[type="file"],
+      button[type="submit"] {
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid var(--black);
+        border-radius: 4px;
+        background-color: var(--white);
+      }
+
+      #update button[type="submit"] {
+        background-color: var(--red);
+        color: var(--white);
+        border: none;
+        cursor: pointer;
+      }
+
+      button[type="submit"]:hover {
+        background-color: var(--lred);
+      }
+
+      #controls {
+        text-align: center;
+      }
+
+      #video-stream {
+        margin-bottom: 20px;
+      }
+
+      .control-form {
+        display: inline-block;
+      }
+
+      .control button {
+        padding: 15px 20px;
+        font-size: 24px;
+        margin: 5px;
+        border: none;
+        background-color: #8a0000;
+        color: white;
+        cursor: pointer;
+      }
+
+      #stop {
+        background-color: #cc4637;
+      }
+
+      .control-form button:hover {
+        background-color: #8a0000b0;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="" id="results">
+      <div class="container">
+        <div class="main-content">
+          <!-- Display total average rate -->
+          <h1>School Rating</h1>
+          <div class="Stable">
+            <table border="1">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Total Voters</th>
+                  <th>Total Expected Stars</th>
+                  <th>Total Earned Stars</th>
+                  <th>Average Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in overall_srating %}
+                <tr>
+                  <td>San Sebastian Rate</td>
+                  <td>{{ row.Stotal_voter }}</td>
+                  <td>{{ row.Sexpected_total_stars }}</td>
+                  <td>{{ row.Stotal_earned_stars }}</td>
+                  <td>
+                    {{ (row.Stotal_earned_stars / row.Sexpected_total_stars *
+                    100)|round(2) }}%
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- Display total rate per target department -->
+          <h1>Average Ratings per Target Department</h1>
+          <div class="ftable">
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Target Department</th>
+                  <th>Total Voters</th>
+                  <th>Total Expected Stars</th>
+                  <th>Total Earned Stars</th>
+                  <th>Average Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in average_ratings %}
+                <tr>
+                  <td>{{ row.Target_Department }}</td>
+                  <td>{{ row.total_voter }}</td>
+                  <td>{{ row.expected_total_stars }}</td>
+                  <td>{{ row.total_earned_stars }}</td>
+                  <td>
+                    {{ (row.total_earned_stars / row.expected_total_stars *
+                    100)|round(2) }}%
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Existing survey data table -->
+          <h2>Survey Data</h2>
+          <div class="table-container">
+            <table id="survey-table" border="1">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>There Department</th>
+                  <th>There Target Department</th>
+                  <th>Rating</th>
+                  <th>Suggestion</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for survey in surveys %}
+                <tr>
+                  <td>{{ survey.id }}</td>
+                  <td>{{ survey.name }}</td>
+                  <td>{{ survey.There_Department }}</td>
+                  <td>{{ survey.There_TDepartment }}</td>
+                  <td>{{ survey.rating }}</td>
+                  <td>{{ survey.suggestion }}</td>
+                  <td><a href="/delete/{{ survey.id }}">Delete</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Delete All button -->
+          <form
+            action="/delete_all"
+            method="post"
+            onsubmit="return confirm('Are you sure you want to delete all entries for this department?');"
+          >
+            <button type="submit">Delete All</button>
+          </form>
+          <button onclick="refreshPage()">Refresh Page</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="" id="update">
+      <h1>Advertisement Slider</h1>
+      <div class="form-container">
+        <form
+          action="/upload_slider"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <select name="Slide_name" id="" required>
+            <option value="Slide 1">Slide 1</option>
+            <option value="Slide 2">Slide 2</option>
+            <option value="Slide 3">Slide 3</option>
+            <option value="Slide 4">Slide 4</option>
+            <option value="Slide 5">Slide 5</option>
+            <option value="Slide 6">Slide 6</option>
+            <option value="Slide 7">Slide 7</option>
+          </select>
+          <input type="file" name="image" id="" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <h1>SSCRdC About</h1>
+      <div class="form-container">
+        <form
+          action="/upload_About"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <select name="About_name" id="" required>
+            <option value="Slide 1">Slide 1</option>
+          </select>
+          <input type="file" name="About_image" id="" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <h1>Courses Images</h1>
+      <div class="form-container">
+        <form
+          action="/upload_Course"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <select name="Course_name" id="" required>
+            <option value="Grade School">GradeSchool</option>
+            <option value="Junior High School">JuniorHighSchool</option>
+            <option value="ABM">ABM</option>
+            <option value="HUMSS">HUMSS</option>
+            <option value="STEM">STEM</option>
+            <option value="BSHM">BSHM</option>
+            <option value="BSTM">BSTM</option>
+            <option value="BSFM">BSFM</option>
+            <option value="BSBA MM">BSBAMM</option>
+            <option value="BSCOMM">BSCOMM</option>
+            <option value="BSA & BSMA">BSA & BSMA</option>
+            <option value="BSPSYCH">BSPSYCH</option>
+            <option value="BSIE & BSECE">BSIE & BSECE</option>
+            <option value="BSCPE">BSCPE</option>
+            <option value="BSIT">BSIT</option>
+            <option value="BSCRIM">BSCRIM</option>
+            <option value="BSN">BSN</option>
+          </select>
+          <input type="file" name="Course_image" id="" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <h1>Administration Images</h1>
+      <div class="form-container">
+        <form
+          action="/upload_Administration"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <select name="Administration_name" id="" required>
+            <option value="Administration">Administration</option>
+          </select>
+          <input type="file" name="image" id="" required />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="container" id="controls">
+      <h1>Robot Control</h1>
+      <div id="video-stream">
+        <h2>Camera Streaming</h2>
+        <img src="{{ url_for('video_feed') }}" alt="Camera Feed" />
+      </div>
+      <div class="control-buttons">
+        <form action="/control" method="post">
+        <button type="submit" name="direction" value="forward">Forward</button>
+        <button type="submit" name="direction" value="backward">Backward</button>
+        <button type="submit" name="direction" value="left">Left</button>
+        <button type="submit" name="direction" value="right">Right</button>
+        <button type="submit" name="direction" value="stop">Stop</button>
+    </form>
+    <form action="/speed" method="post">
+        <input type="number" name="speed" min="0" max="100" value="25">
+        <button type="submit">Set Speed</button>
+    </form>
+      </div>
+    </section>
+
+    <div class="hamburger-panel" id="hamburgerPanel">
+      <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">×</a>
+      <a href="#results">Results</a>
+      <a href="#update">Update</a>
+      <a href="#controls">Control</a>
+      <a href="{{ url_for('logout') }}" onclick="logout()">Logout</a>
+    </div>
+
+    <div class="hamburger-icon" onclick="openNav()">☰</div>
+    <script>
+      function openNav() {
+        document.getElementById("hamburgerPanel").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("hamburgerPanel").style.width = "0";
+      }
+
+      function logout() {
+        // Add logout logic here
+        alert("Logout successful!");
+        // Redirect to the login page or perform any other necessary actions
+      }
+    </script>
+
+    <script>
+      function refreshPage() {
+        location.reload(); // Reload the page
+      }
+    </script>
+
+    <script>
+      function sendRequest(route) {
+        $.ajax({
+          url: route,
+          type: "GET",
+          success: function (response) {
+            console.log(response);
+          },
+          error: function (xhr) {
+            console.error("Error:", xhr.responseText);
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
